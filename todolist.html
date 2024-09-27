@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <style>
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+
+        }
+
+        .task-field {
+            margin: auto;
+            padding: 8px;
+            height: 30px;
+            width: 250px;
+
+
+        }
+
+        .btn {
+            color: white;
+            background-color: blue;
+            height: 38px;
+            width: 83px;
+            margin-left: 5px;
+            cursor: pointer;
+
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 30px;
+            border-bottom: 2px solid gray;
+            margin: 2px;
+            padding: 10px;
+            font-size: 30px;
+            border-radius: 8px;
+            width: 1078px;
+
+        }
+
+        .icons .fa-check:hover {
+            background-color: rgb(19, 230, 19);
+            cursor: pointer;
+            color: white;
+        }
+
+        .icons .fa-xmark:hover {
+            background-color: rgb(252, 46, 46);
+            cursor: pointer;
+            color: white;
+        }
+
+        .icons {
+            margin-left: auto;
+        }
+
+        .icons i {
+            margin: 10px;
+        }
+
+        .list-item:nth-child(odd) {
+            background-color: #e6e6fa;
+        }
+
+        .list-item:nth-child(even) {
+            background-color: #ffe4e1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main">
+        <h1>TO-DO LIST</h1>
+
+        <div class="content">
+            <input class="task-field" type="text" placeholder="Add task" />
+            <button class="btn">Add Task</button>
+        </div>
+
+
+        <div class="list"></div>
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".btn").on("click", function () {
+                var taskvalue = $(".task-field").val()
+                if (taskvalue == 0) {
+                    alert("Please add a task")
+                    return;
+                }
+                $(".list").append(
+                    `<li class="list-item"> 
+                    <span>${taskvalue}</span>
+                            <div class="icons">
+                                <i class="fas fa-check"></i>
+                                <i class="fa-solid fa-xmark"></i>
+                            </div>
+                   </li>`
+                )
+                $(".list").css({
+                    "border": '1px solid goldenrod',
+                    "border-radius": '10px',
+                    "margin-top": '30px',
+                    "width": '1100px'
+                })
+
+                $(".task-field").val(" ");
+
+                $(".fa-xmark").click(function () {
+                    $(this).closest("li").remove()
+                })
+                $(".fa-check").click(function () {
+                    $(this).closest("li").html("Task Completed")
+                })
+            })
+
+        })
+
+
+    </script>
+
+
+</body>
+
+</html>
